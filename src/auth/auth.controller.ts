@@ -2,8 +2,6 @@ import {
     Controller, 
     Post, 
     Body, 
-    HttpCode, 
-    HttpStatus, 
     UseGuards,
     Request 
   } from '@nestjs/common';
@@ -11,7 +9,7 @@ import {
   import { LoginDto } from './dto/login.dto';
   import { JwtAuthGuard } from './guards/jwt-auth.guard';
   import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
-  import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+  import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
   
   @ApiTags('Auth')
@@ -26,7 +24,6 @@ import { CreateUserDto } from 'src/user/dto/create-user.dto';
     }
   
     @Post('login')
-    @HttpCode(HttpStatus.OK)
     @ApiOperation({ summary: 'Login with email and password' })
     login(@Body() loginDto: LoginDto) {
       return this.authService.login(loginDto);
